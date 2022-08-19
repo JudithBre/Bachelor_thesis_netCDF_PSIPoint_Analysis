@@ -1,4 +1,4 @@
-# Use of the file shp2netCDF
+# Use of the file shp2netCDF.py
 
 ## Getting started
 
