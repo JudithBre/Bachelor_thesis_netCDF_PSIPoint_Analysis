@@ -87,7 +87,10 @@ for root, dirs, files in os.walk(shp_dir):
     print(fm_lat)
     print()
 
-    # Test access to the attributes
+# ----------------------------------------------------------------------------------------------------------------------
+# Test access to the attributes (optional)
+# The attributes correspond to the column headers in my shapefile.
+# ----------------------------------------------------------------------------------------------------------------------
     print("Test access to attributes now:")
     fID = fms_shp.findFieldMapIndex("FID")
     print(fID)
@@ -102,8 +105,9 @@ for root, dirs, files in os.walk(shp_dir):
     print("Test finished." + "\n")
     # TODO: Why do the FID and Shape attributes have the same index?!
 
-    # Loop through all attributes (columns), works! :)
-
+# ----------------------------------------------------------------------------------------------------------------------
+# Loop through all attributes (columns)
+# ----------------------------------------------------------------------------------------------------------------------
     print("Loop through all attributes (columns)")
     print("Attribute count: ")
     print(len(fms_shp.fields))
@@ -113,10 +117,8 @@ for root, dirs, files in os.walk(shp_dir):
     for field_idx in range(len(fms_shp.fields)):
         # Get current FieldMap
         field_map = fms_shp.getFieldMap(field_idx)
-
         # Get current Field
         field_outputField = field_map.outputField
-
         # Get current FieldName
         field_name = field_outputField.name
         print("Get current FieldName:")
