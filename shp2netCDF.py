@@ -184,6 +184,4 @@ for root, dirs, files in os.walk(shp_dir):
         arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
                                        {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
                                        {aggregation_shape_type}, {defined_polygon_locations}, {location_id})
-        
-        Quelle: https://desktop.arcgis.com/de/arcmap/latest/tools/space-time-pattern-mining-toolbox/create-space-time-cube.htm
         '''

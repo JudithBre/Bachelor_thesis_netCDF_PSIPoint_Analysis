@@ -17,3 +17,4 @@
 - [What ist ArcPy?](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm)
 - [Importing ArcPy](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/importing-arcpy.htm)
 - [Definition of workspace in ArcGIS](https://pro.arcgis.com/de/pro-app/latest/tool-reference/environment-settings/current-workspace.htm)
+- [Create space-time cube by aggregating points](https://desktop.arcgis.com/de/arcmap/latest/tools/space-time-pattern-mining-toolbox/create-space-time-cube.htm)
