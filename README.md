@@ -2,7 +2,7 @@
 
 ## Getting started
 
-1. To import arcpy, you must be in the WWU university network or connected via VPN if you use the university license of ArcGIS.
+1. To import arcpy, you must be in the university network or connected via VPN if you use the university license of ArcGIS.
 
 2. Customization of the directories
 
