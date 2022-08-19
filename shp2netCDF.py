@@ -3,12 +3,10 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Import of the required modules
 # ----------------------------------------------------------------------------------------------------------------------
-import os  # Working with operating system functionality, https://www.python-lernen.de/python-modul-os.htm
+import os
 print("os has been imported")
 import arcpy
 print("arcpy has been imported" + "\n")
-# ArcPy is a Python site package to perform geographic data analysis, data conversion, data management,
-# and map automation with Python. https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/importing-arcpy.htm
 
 from datetime import datetime
 import re
@@ -132,17 +130,17 @@ for root, dirs, files in os.walk(shp_dir):
 
             # Get FieldMap from Shapefile at current Field Index
             fm_dH = fms_shp.getFieldMap(field_idx)
-#            fm_dH.addInputField(fms_shp.getFieldMap(field_idx), 'dH')
+            fm_dH.addInputField(fms_shp.getFieldMap(field_idx), 'dH')
             fm_dH.outputField.name = 'dH'
             fm_dH.outputField.aliasName = 'delta Height'
             # TODO: For some reason, all values in 'dH' becoming 0
 
             # Create new FieldMappings Object for Output Feature Class
-#            fms_out = arcpy.FieldMappings()
+            fms_out = arcpy.FieldMappings()
 
             # Fill Output Feature Class with 'lat' and 'lon' for every Date-Column, add FieldMaps to FieldMappings()
-#            fms_out.addFieldMap(fm_lon)
-#            fms_out.addFieldMap(fm_lat)
+            fms_out.addFieldMap(fm_lon)
+            fms_out.addFieldMap(fm_lat)
 #            fms_out.addFieldMap(fm_dH)
 #            print(fms_out)
 
