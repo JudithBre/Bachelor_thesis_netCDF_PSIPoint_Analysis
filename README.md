@@ -14,7 +14,6 @@
 - [Basic netCDF terminology](https://desktop.arcgis.com/de/arcmap/latest/manage-data/netcdf/essential-netcdf-vocabulary.htm)
 - [CF Metadata Conventions](http://cfconventions.org/)
 - [Network Common Data Form (NetCDF)](https://www.unidata.ucar.edu/software/netcdf/)
-
 - [What ist ArcPy?](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm)
-- [Importing ArcPy] (https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/importing-arcpy.htm)
+- [Importing ArcPy](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/importing-arcpy.htm)
 
