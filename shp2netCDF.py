@@ -53,18 +53,17 @@ for root, dirs, files in os.walk(shp_dir):
             print(shp_files)
             print()
 
-#for shp_file in shp_files:
-
-    # Get FieldMappings from current shape file
+# ----------------------------------------------------------------------------------------------------------------------
+# You can use the ArcPy classes Field Mappings and Field Map to get the field maps for a specific index.
+# ----------------------------------------------------------------------------------------------------------------------
+    # Create a Field Mappings object
     fms_shp = arcpy.FieldMappings()
-    print("Get FieldMappings from current shape file")
-    # Adds a table to the field mappings object.
+    # Adds a table to the Field Mappings object
     fms_shp.addTable(shp_files[0])
-    # TODO: Works as long as only one table is passed to the FieldMappings object to work with.
-
     print("A table has been added to the FieldMappings object." + "\n")
-    #print(fms_shp)
-    #print()
+    print(fms_shp)
+    print()
+    # Notice: Works as long as only one table adds to the Field Mappings object.
 
     # get field index (fi)
     # Find a field map within the field mappings by name.
@@ -73,9 +72,8 @@ for root, dirs, files in os.walk(shp_dir):
     print("field index for lon:")
     print(fi_lon)
     fi_lat = fms_shp.findFieldMapIndex("lat")
-
+    print("field index for lat:")
     print(fi_lat)
-    print()
 
     # get field map (fm) of field index (fi)
     # Return value: FieldMap, the FieldMap object from the FieldMappings object.
