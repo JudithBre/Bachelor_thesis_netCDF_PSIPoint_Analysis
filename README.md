@@ -23,7 +23,7 @@
 - [FieldMappings](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/fieldmappings.htm)
 - [FieldMap](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/fieldmap.htm)
 
-## Useful links to work with ArcGIS and Python
+## Useful links to work with ArcGIS
 
 - [Definition of workspace in ArcGIS](https://pro.arcgis.com/de/pro-app/latest/tool-reference/environment-settings/current-workspace.htm)
 - [Overview of the "Space Time Pattern Mining" Toolbox](https://desktop.arcgis.com/de/arcmap/latest/tools/space-time-pattern-mining-toolbox/an-overview-of-the-space-time-pattern-mining-toolbox.htm)
