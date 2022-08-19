@@ -129,8 +129,8 @@ for root, dirs, files in os.walk(shp_dir):
             print(field_name + " (starts with D_20*)")
 
             # Get FieldMap from Shapefile at current Field Index
-            fm_dH = fms_shp.getFieldMap(field_idx)
-            fm_dH.addInputField(fms_shp.getFieldMap(field_idx), 'dH')
+            fm_dH = arcpy.FieldMap()
+            fm_dH.addInputField(fms_shp, 'dH') # fms_shp.getFieldMap(field_idx)
             fm_dH.outputField.name = 'dH'
             fm_dH.outputField.aliasName = 'delta Height'
             # TODO: For some reason, all values in 'dH' becoming 0
