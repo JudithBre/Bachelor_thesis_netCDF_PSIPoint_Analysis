@@ -30,21 +30,20 @@ print("Directory input shape files are stored: " + shp_dir)
 out_gdb = os.path.join(root_dir, 'shp2netCDF.gdb')
 print("Directory output geodatabase will be created: " + out_gdb + "\n")
 
-
-# set arcgis workspace to folder
-#print("set arcgis workspace to folder has been done" + "\n")
-arcpy.env.workspace = root_dir
-# "root_dir" is the default location for input and output for geoprocessing tools.
-# https://pro.arcgis.com/de/pro-app/latest/tool-reference/environment-settings/current-workspace.htm
-
+# ----------------------------------------------------------------------------------------------------------------------
+# set arcgis workspace to folder and
 # create empty list for the shapefiles in the input folder
+# ----------------------------------------------------------------------------------------------------------------------
+arcpy.env.workspace = root_dir
+print("set arcgis workspace to folder has been done")
 shp_files = []
-print("empty list for the shapefiles were produced")
 print(shp_files)
-print()
+print("empty list for the shapefiles were produced")
 
+# ----------------------------------------------------------------------------------------------------------------------
 # searching for shapefiles (recursive) in the input folder, append to list
-#print("searching for shapefiles (recursive) in the input folder")
+# ----------------------------------------------------------------------------------------------------------------------
+print("searching for shapefiles (recursive) in the input folder")
 for root, dirs, files in os.walk(shp_dir):
     for file in files:
         if file.endswith(".shp") and "vertical" in file:
