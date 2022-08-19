@@ -1,6 +1,12 @@
 # coding=utf-8
 
 # ----------------------------------------------------------------------------------------------------------------------
+# What is the purpose of this Python script?
+# ----------------------------------------------------------------------------------------------------------------------
+# shp2netCDF.py imports the psi-shapefile into a Space-Time-Cube (NetCDF Format).
+# Merges psi results in Time (1 year) and Space (250m).
+
+# ----------------------------------------------------------------------------------------------------------------------
 # Import of the required modules
 # ----------------------------------------------------------------------------------------------------------------------
 import os
@@ -12,15 +18,9 @@ from datetime import datetime
 import re
 
 # ----------------------------------------------------------------------------------------------------------------------
-# shp2netCDF
-# Imports the psi-shapefile into a Space-Time-Cube (NetCDF Format).
-# Merges psi results in Time (1 year) and Space (250m).
-# ----------------------------------------------------------------------------------------------------------------------
-
 # directories
+# ----------------------------------------------------------------------------------------------------------------------
 # Root Directory:
-from arcpy import FieldMap
-
 root_dir = r'C:\Users\Judith\Documents\Studium\1 - Bachelor of Science Geoinformatik\Bachelorarbeit\BA'
 print("Root Directory: " + root_dir)
 # Directory where the input shape files are stored:
@@ -29,6 +29,7 @@ print("Directory input shape files are stored: " + shp_dir)
 # Directory where the output geodatabase will be created:
 out_gdb = os.path.join(root_dir, 'shp2netCDF.gdb')
 print("Directory output geodatabase will be created: " + out_gdb + "\n")
+
 
 # set arcgis workspace to folder
 #print("set arcgis workspace to folder has been done" + "\n")
