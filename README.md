@@ -8,7 +8,7 @@
 
 3. Integration of a shapefile
 
-## Useful links netCDF
+## Useful links for working with netCDF
 
 - [What are netCDF data?](https://desktop.arcgis.com/de/arcmap/latest/manage-data/netcdf/what-is-netcdf-data.htm)
 - [Basic netCDF terminology](https://desktop.arcgis.com/de/arcmap/latest/manage-data/netcdf/essential-netcdf-vocabulary.htm)
@@ -21,9 +21,9 @@
 - [Overview of the "Space Time Pattern Mining" Toolbox](https://desktop.arcgis.com/de/arcmap/latest/tools/space-time-pattern-mining-toolbox/an-overview-of-the-space-time-pattern-mining-toolbox.htm)
 - [Create space-time cube by aggregating points](https://desktop.arcgis.com/de/arcmap/latest/tools/space-time-pattern-mining-toolbox/create-space-time-cube.htm)
 
-## Useful links ArcPy
+## Useful links when dealing with ArcPy
 
-- [What ist ArcPy?](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm)
+- [What is ArcPy?](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm)
 - [Importing ArcPy](https://pro.arcgis.com/de/pro-app/latest/arcpy/get-started/importing-arcpy.htm)
 - [An overview of ArcPy classes](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/alphabetical-list-of-arcpy-classes.htm)
 - [FieldMappings](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/fieldmappings.htm)
