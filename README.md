@@ -28,3 +28,13 @@
 - [An overview of ArcPy classes](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/alphabetical-list-of-arcpy-classes.htm)
 - [FieldMappings](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/fieldmappings.htm)
 - [FieldMap](https://pro.arcgis.com/de/pro-app/latest/arcpy/classes/fieldmap.htm)
+
+- - -
+
+# Use of the file analyse_nc_xarray.py
+
+## Getting started
+
+## Useful links to work with xarray
+
+- [Xarray documentation](https://docs.xarray.dev/en/stable/)
