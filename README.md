@@ -1,3 +1,17 @@
+# General information
+
+For the development, I use
+- [the development environment PyCharm](https://www.jetbrains.com/pycharm/)
+- [ArcGIS Pro](https://www.esri.com/de-de/arcgis/products/arcgis-pro/overview)
+
+First, create a new ArcGIS Pro project.
+Under Project and Python in the ArcGIS Pro Project, you can set the Python Package Manager.
+Here it is essential to clone the familiar environment of Python under Manage Environments to be able to install its packages later. 
+[See for further information if you need help](https://developers.arcgis.com/python/guide/install-and-set-up/#Installation-using-Python-Package-Manager) 
+
+
+- - -
+
 # Use of the file shp2netCDF.py
 
 ## Getting started
