@@ -1,7 +1,7 @@
 # General information
 
 For the development, I use
-- [the development environment PyCharm](https://www.jetbrains.com/pycharm/)
+- [the integrated development environment PyCharm](https://www.jetbrains.com/pycharm/)
 - [ArcGIS Pro](https://www.esri.com/de-de/arcgis/products/arcgis-pro/overview)
 
 First, create a new ArcGIS Pro project. 
