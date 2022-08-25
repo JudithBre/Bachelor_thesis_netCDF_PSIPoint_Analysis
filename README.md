@@ -53,11 +53,11 @@ After creating a new ArcGIS Pro project, create a new PyCharm project and set th
 
 **Getting started**
 
-- To work with the xarray package, manually install it. 
-Do this in the Package Manager environment in ArcGIS Pro.
-[see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/3)
-- ArcGIS specifies the packages with the version on which it depends during the installation process.
+1. To work with the xarray package, manually install it. <br>
+Do this in the Package Manager environment in ArcGIS Pro. [see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/3) <br>
+ArcGIS specifies the packages with the version on which it depends during the installation process.
 
+2. Customization of the directories
 
 **Useful links to work with xarray**
 
