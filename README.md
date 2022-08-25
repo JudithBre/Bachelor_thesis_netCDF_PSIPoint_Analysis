@@ -5,7 +5,7 @@ For the development, I use
 - [ArcGIS Pro](https://www.esri.com/de-de/arcgis/products/arcgis-pro/overview)
 - [RStudio](https://www.rstudio.com/)
 
-**If you are using the files shp2netCDF.py or analyse_nc_xarray.py**
+**If you are using the files shp2netCDF.py or analyse_nc_xarray.py:** <br>
 First, create a new ArcGIS Pro project. 
 You must be in the university network or connected via VPN if you use the university license of ArcGIS.
 Under Project and Python in the ArcGIS Pro Project, you can set the Python Package Manager.
