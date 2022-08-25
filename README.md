@@ -9,7 +9,7 @@ Under Project and Python in the ArcGIS Pro Project, you can set the Python Packa
 Here it is essential to clone the familiar environment of Python under Manage Environments to be able to install its packages later. 
 [See for further information if you need help](https://developers.arcgis.com/python/guide/install-and-set-up/#Installation-using-Python-Package-Manager) 
 
-After creating a new ArcGIS Pro project, create a new PyCharm project and set the Python interpreter to the environment created in ArcGIS Pro!
+After creating a new ArcGIS Pro project, create a new PyCharm project and set the Python interpreter to the environment created in ArcGIS Pro! [see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/1)
 
 - - -
 
