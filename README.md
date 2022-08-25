@@ -3,6 +3,7 @@
 For the development, I use
 - [the integrated development environment PyCharm](https://www.jetbrains.com/pycharm/)
 - [ArcGIS Pro](https://www.esri.com/de-de/arcgis/products/arcgis-pro/overview)
+- [RStudio](https://www.rstudio.com/)
 
 First, create a new ArcGIS Pro project. 
 You must be in the university network or connected via VPN if you use the university license of ArcGIS.
@@ -62,3 +63,12 @@ ArcGIS specifies the packages with the version on which it depends during the in
 **Useful links to work with xarray**
 
 - [Xarray documentation](https://docs.xarray.dev/en/stable/)
+
+- - -
+
+# Use of the file Vector_Cube_Analysis.R
+
+**Getting started**
+
+Suppose you have already installed RStudio, then you have to ensure it is the latest version. Otherwise, you may have problems during the Installation of packages. <br>
+
