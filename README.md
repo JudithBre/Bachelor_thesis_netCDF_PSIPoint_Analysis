@@ -7,8 +7,8 @@ For the development, I use
 First, create a new ArcGIS Pro project.
 Under Project and Python in the ArcGIS Pro Project, you can set the Python Package Manager.
 Here it is essential to clone the familiar environment of Python under Manage Environments to be able to install its packages later. 
-[see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/2)
-[See for further information if you need help](https://developers.arcgis.com/python/guide/install-and-set-up/#Installation-using-Python-Package-Manager) 
+[see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/2) or
+[see for further information if you need help](https://developers.arcgis.com/python/guide/install-and-set-up/#Installation-using-Python-Package-Manager) 
 
 After creating a new ArcGIS Pro project, create a new PyCharm project and set the Python interpreter to the environment created in ArcGIS Pro! [see figure](https://github.com/JudithBre/Bachelor_thesis_netCDF_PSIPoint_Analysis/issues/1)
 
