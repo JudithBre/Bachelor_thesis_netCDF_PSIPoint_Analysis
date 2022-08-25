@@ -51,6 +51,9 @@ After creating a new ArcGIS Pro project, create a new PyCharm project and set th
 # Use of the file analyse_nc_xarray.py
 
 **Getting started**
+To work with the xarray package, manually install it. 
+Do this in the Package Manager environment in ArcGIS Pro.
+[see figure]()
 
 **Useful links to work with xarray**
 
