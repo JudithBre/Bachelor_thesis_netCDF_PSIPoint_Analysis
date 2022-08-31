@@ -32,41 +32,40 @@ for root, dirs, files in os.walk(shp_dir):
             # appends an element to the end of the list
             shp_files.append(os.path.join(root, file))
 
-# Use of the ArcPy class Field Mappings 
-    # Create a Field Mappings object
-    fms_shp = arcpy.FieldMappings()
-    # Adds a table to the Field Mappings object
-    fms_shp.addTable(shp_files[0])
-    # Notice: Works as long as only one table adds to the Field Mappings object.
+# Create a Field Mappings object
+fms_shp = arcpy.FieldMappings()
+# Adds a table to the Field Mappings object
+fms_shp.addTable(shp_files[0])
+# Notice: Works as long as only one table adds to the Field Mappings object.
 
 # Loop through all attributes (columns)
-    fields = ["lat", "lon"]  
-    for field_idx in range(len(fms_shp.fields)):
-        # Get current FieldMap
-        field_map = fms_shp.getFieldMap(field_idx)
-        # Get current Field
-        field_outputField = field_map.outputField
-        # Get current FieldName
-        field_name = field_outputField.name
+fields = ["lat", "lon"]  
+for field_idx in range(len(fms_shp.fields)):
+    # Get current FieldMap
+    field_map = fms_shp.getFieldMap(field_idx)
+    # Get current Field
+    field_outputField = field_map.outputField
+    # Get current FieldName
+    field_name = field_outputField.name
 
-        # Search for date columns starting with "D_20*"
-        if field_name.startswith('D_20'):
-            fields.append(field_name)
+    # Search for date columns starting with "D_20*"
+    if field_name.startswith('D_20'):
+        fields.append(field_name)
     
-    voids = arcpy.da.FeatureClassToNumPyArray(shapedateiParameter, fields)
-    feature_list = []
-    for void in voids:
-        temp = []
+voids = arcpy.da.FeatureClassToNumPyArray(shapedateiParameter, fields)
+feature_list = []
+for void in voids:
+    temp = []
         for x in void:
             temp.append(x)
-        feature_list.append(temp)
-     array = np.asarray(feature_list)    
-    # Daten sind alle eingelesen und in einem Format in dem wir dies beliebig weiterverwenden können....
-    #TODO: array into Space-Time-Cube
+    feature_list.append(temp)
+array = np.asarray(feature_list)    
+# Daten sind alle eingelesen und in einem Format in dem wir dies beliebig weiterverwenden können....
+#TODO: array into Space-Time-Cube
     
-        '''     
-        # Run the Spatial Join tool, using the defaults for the join operation and join type
-        arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
-                                       {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
-                                       {aggregation_shape_type}, {defined_polygon_locations}, {location_id})
-        '''
+'''     
+# Run the Spatial Join tool, using the defaults for the join operation and join type
+arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
+                              {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
+                              {aggregation_shape_type}, {defined_polygon_locations}, {location_id})
+'''
