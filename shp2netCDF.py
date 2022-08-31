@@ -180,6 +180,11 @@ for root, dirs, files in os.walk(shp_dir):
 #            arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, '#', fms_out)
 
         '''
+        fields = ["lat", "lon"] 
+        # if fieldsname starts with... "D_20" in der Schleife mit einbinden und dann fields ergänzen
+        for field_idx in range(len(fms_shp.fields)):
+        voids = arcpy.da.FeatureClassToNumPyArray(shapedateiParameter, fields)
+        
         # Run the Spatial Join tool, using the defaults for the join operation and join type
         arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
                                        {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
