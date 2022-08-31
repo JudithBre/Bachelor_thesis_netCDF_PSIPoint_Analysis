@@ -52,7 +52,7 @@ for field_idx in range(len(fms_shp.fields)):
     if field_name.startswith('D_20'):
         fields.append(field_name)
     
-voids = arcpy.da.FeatureClassToNumPyArray(shapedateiParameter, fields)
+voids = arcpy.da.FeatureClassToNumPyArray(shp_dir, fields)
 feature_list = []
 for void in voids:
     temp = []
