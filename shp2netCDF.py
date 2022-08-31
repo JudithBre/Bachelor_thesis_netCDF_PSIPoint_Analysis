@@ -102,13 +102,17 @@ for root, dirs, files in os.walk(shp_dir):
             fields.append(field_name)
     
     voids = arcpy.da.FeatureClassToNumPyArray(shapedateiParameter, fields)
-    list = []
+    feature_list = []
     for void in voids:
-        
+        temp = []
+        for x in void:
+            temp.append(x)
+        feature_list.append(temp)
+     array = np.asarray(feature_list)    
+    # Daten sind alle eingelesen und in einem Format in dem wir dies beliebig weiterverwenden können....
+    #TODO: array into Space-Time-Cube
     
-        '''
-           
-       
+        '''     
         # Run the Spatial Join tool, using the defaults for the join operation and join type
         arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
                                        {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
