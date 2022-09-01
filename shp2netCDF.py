@@ -26,6 +26,7 @@ print("Root Directory: " + root_dir)
 # Directory where the input shape files are stored:
 shp_dir = os.path.join(root_dir, 'Daten\A015_D139_32400_5712_20141001_20201231_BA-Bresser_v02')
 print("Directory input shape files are stored: " + shp_dir)
+print(os.listdir(shp_dir))
 # Directory where the output geodatabase will be created:
 out_gdb = os.path.join(root_dir, 'shp2netCDF.gdb')
 print("Directory output geodatabase will be created: " + out_gdb + "\n")
