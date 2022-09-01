@@ -13,6 +13,7 @@ import arcpy
 from datetime import datetime
 import re
 
+# TODO: Pfade im System ändern und im Code anpassen, keine Leer- oder Sonderzeichen verwenden
 # Set directories
 # Root Directory:
 root_dir = r'C:\Users\Judith\Documents\Studium\1 - Bachelor of Science Geoinformatik\Bachelorarbeit\BA'
