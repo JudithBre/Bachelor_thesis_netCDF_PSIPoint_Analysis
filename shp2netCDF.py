@@ -55,7 +55,7 @@ for root, dirs, files in os.walk(shp_dir):
             print()
 
 # ----------------------------------------------------------------------------------------------------------------------
-# You can use the ArcPy classes Field Mappings and Field Map to get the field maps for a specific index.
+# You can use the ArcPy class Field Mappings
 # ----------------------------------------------------------------------------------------------------------------------
 # Create a Field Mappings object
 fms_shp = arcpy.FieldMappings()
