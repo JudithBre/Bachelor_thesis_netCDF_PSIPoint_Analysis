@@ -9,10 +9,10 @@
 # Import of the required modules
 import os
 import arcpy
-# import pandas as pd
-# import numpy as np
-# from datetime import datetime
-# import re
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import re
 
 # https://www.adamerispaha.com/2017/01/24/reading-shapefiles-into-pandas-dataframes/
 # https://pypi.org/project/pyshp/
@@ -95,7 +95,11 @@ for field_idx in range(len(fms_shp.fields)):
         print(field_name + " (starts with D_20*)")
 print(fields)
 
-voids = arcpy.da.FeatureClassToNumPyArray(root_dir, fields)
+# ----------------------------------------------------------------------------------------------------------------------
+# Converts a feature class into a structured NumPy array
+# ----------------------------------------------------------------------------------------------------------------------
+output_layer = arcpy.management.MakeFeatureLayer(shp_dir, "output_layer")
+voids = arcpy.da.FeatureClassToNumPyArray(output_layer, fields)
 print(voids)
 # df = pd.DataFrame(voids) # eine Idee von vielleicht ein DataFrame nutzen?????!!!!!
 # feature_list = []
