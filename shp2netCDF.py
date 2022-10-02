@@ -96,62 +96,59 @@ for field_idx in range(len(fms_shp.fields)):
 print(fields)
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Create a Folder (Data Management)
+# The Python script runs fine up to this point. No changes necessary.
 # ----------------------------------------------------------------------------------------------------------------------
+
+'''
+Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder
+Parameters
+- out_folder_path: The location on the disk where the folder will be created. (Data type: Folder)
+- out_folder_path: The folder to create. (Data type: String)
+Return
+The new output folder (data type: folder)
+'''
 folder_for_GDB = arcpy.management.CreateFolder(out_gdb, "folder_for_GDB")
 print(folder_for_GDB)
-'''
-arcpy.management.CreateFolder(out_folder_path, out_name)
-
-out_folder_path: Der Speicherort auf dem Datenträger, an dem der Ordner erstellt wird. (Datentyp Folder)
-out_folder_path: Der zu erstellende Ordner. (Datentyp String)
-'''
-# ----------------------------------------------------------------------------------------------------------------------
-# Create a file Geodatabase (Data Management)
-# ----------------------------------------------------------------------------------------------------------------------
-arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb")
 
 '''
-arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version})
-
-out_folder_path: Der Ordner, in dem die neue File-GDB erstellt wird (Datentyp Folder)
-out_name: Der Name der zu erstellenden File-GDB (Datentyp String)
+Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
+creates a file GDB (Data Management)
+Parameters
+- out_folder_path: The folder where the new file GDB will be created (data type: Folder).
+- out_name: The name of the file GDB to be created (data type: string).
+- out_version: The ArcGIS version of the new GDB, CURRENT creates a GDB that is compatible with the currently 
+               installed version of ArcGIS. This is the default setting.
+Return
+The new output file GDB (data type: workspace)
 '''
+arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
 
-# ----------------------------------------------------------------------------------------------------------------------
-# Converts a shapefile into a feature class
-# ----------------------------------------------------------------------------------------------------------------------
+'''
+Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
+converts a shapefile into a feature class
+Parameters
+- in_features: The feature class or feature layer to be converted. (Data type: Feature layer)
+- out_path: The location where the output feature class is created. This can be a GDB or a folder
+            If a folder is specified as the location, the output is a shapefile. (Datatype: Workspace;Feature Dataset)
+- out_name: The name of the output feature class. (Data type: String)     
+Return
+The output feature class. (Data type: Feature Class)
+'''
 arcpy.conversion.FeatureClassToFeatureClass(shp_dir, out_gdb, "out_psi_featureClass")
 
 '''
-arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, 
-                                           {where_clause}, {field_mapping}, {config_keyword})
-                                           
-in_features: Die zu konvertierende Feature-Class bzw. der zu konvertierende Feature-Layer. (Datentyp Feature Layer)
-out_path: Der Speicherort, an dem die Ausgabe-Feature-Class erstellt wird. 
-          Dies kann eine GDB oder ein Ordner sein. 
-          Wird ein Ordner als Speicherort angegeben, ist die Ausgabe ein Shapefile. (Datentyp Workspace;Feature Dataset)  
-out_name: Der Name der Ausgabe-Feature-Class. (Datentyp String)                             
-'''
+Function FeatureClassToNumPyArray (in_table, field_names) converts a feature class into a numpy array
+Parameters
+- in_table: The feature class, layer, table or table view (data type: string)
+- field_names: A list (or tuple) of field names. Specify an asterisk (*) instead of a list of fields, 
+               to access all fields of the input table 
+Return
 
-# ----------------------------------------------------------------------------------------------------------------------
-# Converts a feature class into a structured NumPy array
-# ----------------------------------------------------------------------------------------------------------------------
+'''
 voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
 print(voids)
 
-'''
-FeatureClassToNumPyArray (in_table, field_names, 
-                         {where_clause}, {spatial_reference}, {explode_to_points}, {skip_nulls}, {null_value})
-
-in_table: Die Feature-Class, der Layer, die Tabelle oder die Tabellensicht (Datentyp String)
-field_names: Eine Liste (oder ein Tupel) von Feldnamen. 
-             Geben Sie anstelle einer Felderliste ein Sternchen (*) an, 
-             um auf alle Felder der Eingabetabelle zuzugreifen 
-'''
-
-
-# df = pd.DataFrame(voids) # eine Idee von vielleicht ein DataFrame nutzen?????!!!!!
+# df = pd.DataFrame(voids) # an idea maybe use a DataFrame?????!!!!!
 # feature_list = []
 # for void in voids:
 #    temp = []
@@ -159,36 +156,30 @@ field_names: Eine Liste (oder ein Tupel) von Feldnamen.
 #        temp.append(x)
 # feature_list.append(temp)
 # array = np.asarray(feature_list)
-# Daten sind alle eingelesen und in einem Format in dem wir dies beliebig weiterverwenden können....
+# Data are all read in and in a format where we can use this as we wish....
 '''TODO: array into Space-Time-Cube'''
 
-
+'''
+Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  creates a Feature-Layer
+Parameters
+- in_features: The input feature class or layer from which the new layer is created. 
+               Complex feature classes such as annotation and dimension feature classes are not allowed as inputs.
+               (Data type: Feature Layer)
+- out_layer: The name of the feature layer to be created. 
+             The newly created layer can be used as an input to any geoprocessing tool for which feature layers 
+             can be entered. (Data type: Feature Layer)
+'''
 # arcpy.management.MakeFeatureLayer(shp_dir, featureLayer)
 
 '''
-arcpy.management.MakeFeatureLayer(in_features, out_layer, {where_clause}, {workspace}, {field_info})
-
-in_features: Die Eingabe-Feature-Class oder der Eingabe-Feature-Layer, aus der bzw. dem der neue Layer erstellt wird. 
-          Komplexe Feature-Classes wie Annotation- und Dimension-Feature-Classes sind als Eingaben nicht zulässig.
-          (Datentyp Feature Layer)
-out_layer: Der Name des zu erstellenden Feature-Layers. Der neu erstellte Layer kann als Eingabe bei jedem beliebigen 
-           Geoverarbeitungswerkzeug verwendet werden, für das Feature-Layer eingegeben werden können. 
-           (Datentyp Feature Layer)
-
-https://pro.arcgis.com/de/pro-app/latest/tool-reference/data-management/make-feature-layer.htm
+Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field) creates a space-time cube
+Parameters
+- in_features: The input point feature class to aggregate to space-time sections. (Data type: Feature layer)
+- output_cube: The output netCDF data cube to be created,
+               which contains the number and summaries of point data from input features. (Data type: File)
+- time_field:  The field containing date and time information (timestamp) for each point.
+              This field must be of type "Date". (Data type: Field)
 '''
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Creates a space-time cube
-
-# Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field)
-# Parameters
-# in_features: The input point feature class to aggregate to space-time sections. (Data type: Feature layer)
-# output_cube: The output netCDF data cube to be created,
-#              which contains the number and summaries of point data from input features. (Data type: File)
-# time_field:  The field containing date and time information (timestamp) for each point.
-#              This field must be of type "Date". (Data type: Field)
-# ----------------------------------------------------------------------------------------------------------------------
 # cube = arcpy.stpm.CreateSpaceTimeCube(featureLayer, PSI.nc, time_field)
 
 
