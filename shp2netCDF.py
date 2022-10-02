@@ -98,9 +98,23 @@ print(fields)
 # ----------------------------------------------------------------------------------------------------------------------
 # Converts a feature class into a structured NumPy array
 # ----------------------------------------------------------------------------------------------------------------------
-output_layer = arcpy.management.MakeFeatureLayer(shp_dir, "output_layer")
-voids = arcpy.da.FeatureClassToNumPyArray(output_layer, fields)
+in_table = arcpy.management.MakeFeatureLayer(shp_dir, "in_table")
+voids = arcpy.da.FeatureClassToNumPyArray(in_table, fields)
+''' TODO: Shapefile into Geodatabase Feature Class
+#       (Konvertieren einer externen Datenquelle, ein Shapefile, in eine Feature-Class)? '''
 print(voids)
+
+'''
+FeatureClassToNumPyArray (in_table, field_names, 
+                         {where_clause}, {spatial_reference}, {explode_to_points}, {skip_nulls}, {null_value})
+
+in_table: Die Feature-Class, der Layer, die Tabelle oder die Tabellensicht (Datentyp String)
+field_names: Eine Liste (oder ein Tupel) von Feldnamen. 
+             Geben Sie anstelle einer Felderliste ein Sternchen (*) an, 
+             um auf alle Felder der Eingabetabelle zuzugreifen 
+'''
+
+
 # df = pd.DataFrame(voids) # eine Idee von vielleicht ein DataFrame nutzen?????!!!!!
 # feature_list = []
 # for void in voids:
@@ -118,7 +132,7 @@ print(voids)
 '''
 arcpy.management.MakeFeatureLayer(in_features, out_layer, {where_clause}, {workspace}, {field_info})
 
-in_layer: Die Eingabe-Feature-Class oder der Eingabe-Feature-Layer, aus der bzw. dem der neue Layer erstellt wird. 
+in_features: Die Eingabe-Feature-Class oder der Eingabe-Feature-Layer, aus der bzw. dem der neue Layer erstellt wird. 
           Komplexe Feature-Classes wie Annotation- und Dimension-Feature-Classes sind als Eingaben nicht zulässig.
           (Datentyp Feature Layer)
 out_layer: Der Name des zu erstellenden Feature-Layers. Der neu erstellte Layer kann als Eingabe bei jedem beliebigen 
