@@ -9,10 +9,10 @@
 # Import of the required modules
 import os
 import arcpy
-import pandas as pd
-import numpy as np
-from datetime import datetime
-import re
+# import pandas as pd
+# import numpy as np
+# from datetime import datetime
+# import re
 
 # https://www.adamerispaha.com/2017/01/24/reading-shapefiles-into-pandas-dataframes/
 # https://pypi.org/project/pyshp/
@@ -100,15 +100,19 @@ print(fields)
 # ----------------------------------------------------------------------------------------------------------------------
 
 '''
-Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder
+Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder in the specified location
 Parameters
 - out_folder_path: The location on the disk where the folder will be created. (Data type: Folder)
-- out_folder_path: The folder to create. (Data type: String)
+- out_name: The folder to create. (Data type: String)
 Return
 The new output folder (data type: folder)
 '''
-folder_for_GDB = arcpy.management.CreateFolder(out_gdb, "folder_for_GDB")
-print(folder_for_GDB)
+if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB'):
+    out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
+    out_name = "folder_for_GDB"
+    folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
+else:
+    print("a folder exists already")
 
 '''
 Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
@@ -121,8 +125,10 @@ Parameters
 Return
 The new output file GDB (data type: workspace)
 '''
-arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
-
+if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB\shp2netCDF.gdb'):
+    arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
+else:
+    print("file GDB exists already")
 '''
 Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
 converts a shapefile into a feature class
@@ -134,7 +140,7 @@ Parameters
 Return
 The output feature class. (Data type: Feature Class)
 '''
-arcpy.conversion.FeatureClassToFeatureClass(shp_dir, out_gdb, "out_psi_featureClass")
+arcpy.conversion.FeatureClassToFeatureClass(shp_dir, folder_for_GDB, "out_shpAs_featureClass")
 
 '''
 Function FeatureClassToNumPyArray (in_table, field_names) converts a feature class into a numpy array
@@ -145,8 +151,8 @@ Parameters
 Return
 
 '''
-voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
-print(voids)
+# voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
+# print(voids)
 
 # df = pd.DataFrame(voids) # an idea maybe use a DataFrame?????!!!!!
 # feature_list = []
