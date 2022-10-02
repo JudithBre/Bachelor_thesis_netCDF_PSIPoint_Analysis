@@ -107,10 +107,10 @@ Parameters
 Return
 The new output folder (data type: folder)
 '''
-out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
-out_name = "folder_for_GDB"
-folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
-
+# out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
+# out_name = "folder_for_GDB"
+# folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
+# print("A folder has been created")
 '''
 Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
 creates a file GDB (Data Management)
@@ -122,10 +122,12 @@ Parameters
 Return
 The new output file GDB (data type: workspace)
 '''
-if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB\shp2netCDF.gdb'):
-    arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
-else:
-    print("file GDB exists already")
+# if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB\shp2netCDF.gdb'):
+#    file_gdb_workspace = arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
+#    print("A file geodatabase was created")
+# else:
+#    print("file GDB exists already")
+
 '''
 Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
 converts a shapefile into a feature class
@@ -137,7 +139,8 @@ Parameters
 Return
 The output feature class. (Data type: Feature Class)
 '''
-arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_featureClass")
+# arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_fc")
+# print("Shapefile was converted to a feature class. Files were saved.")
 
 '''
 Function FeatureClassToNumPyArray (in_table, field_names) converts a feature class into a numpy array
@@ -145,11 +148,12 @@ Parameters
 - in_table: The feature class, layer, table or table view (data type: string)
 - field_names: A list (or tuple) of field names. Specify an asterisk (*) instead of a list of fields, 
                to access all fields of the input table 
-Return
-
 '''
-numpyArray = arcpy.da.FeatureClassToNumPyArray("out_shpAs_featureClass", fields)
-print(numpyArray)
+print("Start to create the numpy array!!! Let's create :)")
+featureClass = os.path.join(shp_dir, "A015_D139_32400_5712_20141001_20201231_BA-Bresser_v02_decomposed_vertical.shp")
+print(type(featureClass))
+numpyArray = arcpy.da.FeatureClassToNumPyArray(featureClass, fields)
+print("numpyArray")
 # df = pd.DataFrame(voids) # an idea maybe use a DataFrame?????!!!!!
 # feature_list = []
 # for void in voids:
