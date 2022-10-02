@@ -107,6 +107,9 @@ Parameters
 Return
 The new output folder (data type: folder)
 '''
+out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
+out_name = "folder_for_GDB"
+folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
 if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB'):
     out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
     out_name = "folder_for_GDB"
@@ -140,7 +143,7 @@ Parameters
 Return
 The output feature class. (Data type: Feature Class)
 '''
-arcpy.conversion.FeatureClassToFeatureClass(shp_dir, folder_for_GDB, "out_shpAs_featureClass")
+arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_featureClass")
 
 '''
 Function FeatureClassToNumPyArray (in_table, field_names) converts a feature class into a numpy array
@@ -151,9 +154,8 @@ Parameters
 Return
 
 '''
-# voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
-# print(voids)
-
+numpyArray = arcpy.da.FeatureClassToNumPyArray("out_shpAs_featureClass", fields)
+print(numpyArray)
 # df = pd.DataFrame(voids) # an idea maybe use a DataFrame?????!!!!!
 # feature_list = []
 # for void in voids:
