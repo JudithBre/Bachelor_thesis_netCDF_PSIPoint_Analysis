@@ -181,7 +181,7 @@ https://pro.arcgis.com/de/pro-app/latest/tool-reference/data-management/make-fea
 # ----------------------------------------------------------------------------------------------------------------------
 # Creates a space-time cube
 
-# Funktion arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field)
+# Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field)
 # Parameters
 # in_features: The input point feature class to aggregate to space-time sections. (Data type: Feature layer)
 # output_cube: The output netCDF data cube to be created,
