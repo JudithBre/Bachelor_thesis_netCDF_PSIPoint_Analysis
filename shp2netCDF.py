@@ -96,9 +96,20 @@ for field_idx in range(len(fms_shp.fields)):
 print(fields)
 
 # ----------------------------------------------------------------------------------------------------------------------
+# Create a Folder (Data Management)
+# ----------------------------------------------------------------------------------------------------------------------
+folder_for_GDB = arcpy.management.CreateFolder(out_gdb, "folder_for_GDB")
+print(folder_for_GDB)
+'''
+arcpy.management.CreateFolder(out_folder_path, out_name)
+
+out_folder_path: Der Speicherort auf dem Datenträger, an dem der Ordner erstellt wird. (Datentyp Folder)
+out_folder_path: Der zu erstellende Ordner. (Datentyp String)
+'''
+# ----------------------------------------------------------------------------------------------------------------------
 # Create a file Geodatabase (Data Management)
 # ----------------------------------------------------------------------------------------------------------------------
-arcpy.management.CreateFileGDB(out_gdb, "shp2netCDF.gdb")
+arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb")
 
 '''
 arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version})
@@ -127,8 +138,6 @@ out_name: Der Name der Ausgabe-Feature-Class. (Datentyp String)
 # Converts a feature class into a structured NumPy array
 # ----------------------------------------------------------------------------------------------------------------------
 voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
-''' TODO: Shapefile into GDB Feature Class
-#       (Konvertieren einer externen Datenquelle, ein Shapefile, in eine Feature-Class)? '''
 print(voids)
 
 '''
