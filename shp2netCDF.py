@@ -178,29 +178,29 @@ out_layer: Der Name des zu erstellenden Feature-Layers. Der neu erstellte Layer 
 https://pro.arcgis.com/de/pro-app/latest/tool-reference/data-management/make-feature-layer.htm
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
+# The arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field) function creates a space-time cube.
+
+# Parameters
+# in_features: The input point feature class to aggregate to space-time sections. (Data type: Feature layer)
+# output_cube: The output netCDF data cube to be created,
+#              which contains the number and summaries of point data from input features. (Data type: File)
+# time_field:  The field containing date and time information (timestamp) for each point.
+#              This field must be of type "Date". (Data type: Field)
+# ----------------------------------------------------------------------------------------------------------------------
 # cube = arcpy.stpm.CreateSpaceTimeCube(featureLayer, PSI.nc, time_field)
 
-'''
-arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field, {template_cube}, {time_step_interval},
-                              {time_step_alignment}, {reference_time}, {distance_interval}, summary_fields,
-                              {aggregation_shape_type}, {defined_polygon_locations}, {location_id})
-                              
-in_features: Die Eingabe-Punkt-Feature-Class, die zu Raum-Zeit-Abschnitten aggregiert werden soll.
-             (Datentyp Feature Layer)
-output_cube: Der zu erstellende Ausgabe-netCDF-Datenwürfel,
-             der die Anzahl und Zusammenfassungen der Punktdaten von Eingabe-Features enthält. (Datentyp File)
-time_field:  Das Feld mit Datums- und Uhrzeitangaben (Zeitstempel) für jeden Punkt.
-             Dieses Feld muss vom Typ "Datum" sein. (Datentyp Field)                              
-'''
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Idea collection, programming ideas
+# ----------------------------------------------------------------------------------------------------------------------
+# Check and Create GDB
+# if not arcpy.Exists(os.path.join(root_dir, out_gdb)):
+#   arcpy.management.CreateFileGDB(root_dir, 'shp2netCDF.gdb', 'CURRENT')
 
-            # Check and Create GDB
-#            if not arcpy.Exists(os.path.join(root_dir, out_gdb)):
-#               arcpy.management.CreateFileGDB(root_dir, 'shp2netCDF.gdb', 'CURRENT')
+# Check and Remove Feature Class
+# if arcpy.Exists(os.path.join(out_path, out_name)):
+#   arcpy.Delete_management(out_name)
 
-            # Check and Remove Feature Class
-#            if arcpy.Exists(os.path.join(out_path, out_name)):
-#                arcpy.Delete_management(out_name)
-
-            # Save Feature Class to GDB
-#            arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, '#', fms_out)
+# Save Feature Class to GDB
+# arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, '#', fms_out)
