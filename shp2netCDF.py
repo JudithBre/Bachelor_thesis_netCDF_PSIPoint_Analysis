@@ -28,7 +28,7 @@ shp_dir = os.path.join(root_dir, 'Daten\A015_D139_32400_5712_20141001_20201231_B
 print("Directory input shape files are stored: " + shp_dir)
 print(os.listdir(shp_dir))
 # Directory where the output geodatabase will be created:
-out_gdb = os.path.join(root_dir, 'shp2netCDF.gdb')
+out_gdb = os.path.join(root_dir, "shp2netCDF.gdb")
 print("Directory output geodatabase will be created: " + out_gdb + "\n")
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -96,11 +96,38 @@ for field_idx in range(len(fms_shp.fields)):
 print(fields)
 
 # ----------------------------------------------------------------------------------------------------------------------
+# Create a file Geodatabase (Data Management)
+# ----------------------------------------------------------------------------------------------------------------------
+arcpy.management.CreateFileGDB(out_gdb, "shp2netCDF.gdb")
+
+'''
+arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version})
+
+out_folder_path: Der Ordner, in dem die neue File-GDB erstellt wird (Datentyp Folder)
+out_name: Der Name der zu erstellenden File-GDB (Datentyp String)
+'''
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Converts a shapefile into a feature class
+# ----------------------------------------------------------------------------------------------------------------------
+arcpy.conversion.FeatureClassToFeatureClass(shp_dir, out_gdb, "out_psi_featureClass")
+
+'''
+arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, 
+                                           {where_clause}, {field_mapping}, {config_keyword})
+                                           
+in_features: Die zu konvertierende Feature-Class bzw. der zu konvertierende Feature-Layer. (Datentyp Feature Layer)
+out_path: Der Speicherort, an dem die Ausgabe-Feature-Class erstellt wird. 
+          Dies kann eine GDB oder ein Ordner sein. 
+          Wird ein Ordner als Speicherort angegeben, ist die Ausgabe ein Shapefile. (Datentyp Workspace;Feature Dataset)  
+out_name: Der Name der Ausgabe-Feature-Class. (Datentyp String)                             
+'''
+
+# ----------------------------------------------------------------------------------------------------------------------
 # Converts a feature class into a structured NumPy array
 # ----------------------------------------------------------------------------------------------------------------------
-in_table = arcpy.management.MakeFeatureLayer(shp_dir, "in_table")
-voids = arcpy.da.FeatureClassToNumPyArray(in_table, fields)
-''' TODO: Shapefile into Geodatabase Feature Class
+voids = arcpy.da.FeatureClassToNumPyArray("out_psi_featureClass", fields)
+''' TODO: Shapefile into GDB Feature Class
 #       (Konvertieren einer externen Datenquelle, ein Shapefile, in eine Feature-Class)? '''
 print(voids)
 
