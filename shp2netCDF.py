@@ -110,12 +110,6 @@ The new output folder (data type: folder)
 out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
 out_name = "folder_for_GDB"
 folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
-if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB'):
-    out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
-    out_name = "folder_for_GDB"
-    folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
-else:
-    print("a folder exists already")
 
 '''
 Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
