@@ -9,8 +9,8 @@
 # Import of the required modules
 import os
 import arcpy
-# import pandas as pd
-# import numpy as np
+import pandas as pd
+import numpy as np
 # from datetime import datetime
 # import re
 
@@ -100,61 +100,21 @@ print(fields)
 # ----------------------------------------------------------------------------------------------------------------------
 
 '''
-Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder in the specified location
-Parameters
-- out_folder_path: The location on the disk where the folder will be created. (Data type: Folder)
-- out_name: The folder to create. (Data type: String)
-Return
-The new output folder (data type: folder)
-'''
-# out_folder_path = r'C:\Users\Judith\Documents\Studium\Test'
-# out_name = "folder_for_GDB"
-# folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
-# print("A folder has been created")
-'''
-Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
-creates a file GDB (Data Management)
-Parameters
-- out_folder_path: The folder where the new file GDB will be created (data type: Folder).
-- out_name: The name of the file GDB to be created (data type: string).
-- out_version: The ArcGIS version of the new GDB, CURRENT creates a GDB that is compatible with the currently 
-               installed version of ArcGIS. This is the default setting.
-Return
-The new output file GDB (data type: workspace)
-'''
-# if not os.path.exists(r'C:\Users\Judith\Documents\Studium\Test\folder_for_GDB\shp2netCDF.gdb'):
-#    file_gdb_workspace = arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
-#    print("A file geodatabase was created")
-# else:
-#    print("file GDB exists already")
-
-'''
-Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
-converts a shapefile into a feature class
-Parameters
-- in_features: The feature class or feature layer to be converted. (Data type: Feature layer)
-- out_path: The location where the output feature class is created. This can be a GDB or a folder
-            If a folder is specified as the location, the output is a shapefile. (Datatype: Workspace;Feature Dataset)
-- out_name: The name of the output feature class. (Data type: String)     
-Return
-The output feature class. (Data type: Feature Class)
-'''
-# arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_fc")
-# print("Shapefile was converted to a feature class. Files were saved.")
-
-'''
-Function FeatureClassToNumPyArray (in_table, field_names) converts a feature class into a numpy array
+Function FeatureClassToNumPyArray(in_table, field_names) converts a feature class into a numpy array
 Parameters
 - in_table: The feature class, layer, table or table view (data type: string)
 - field_names: A list (or tuple) of field names. Specify an asterisk (*) instead of a list of fields, 
-               to access all fields of the input table 
+               to access all fields of the input table (data type: string)
 '''
-print("Start to create the numpy array!!! Let's create :)")
+# save the file path to the shapefile feature class, data type: String
 featureClass = os.path.join(shp_dir, "A015_D139_32400_5712_20141001_20201231_BA-Bresser_v02_decomposed_vertical.shp")
-print(type(featureClass))
+# Conversion of the list "fields" with the attribute names into the data type String
+stringFields = "".join(fields)
+# As required, the function now receives inputs in the form of a string as parameters
 numpyArray = arcpy.da.FeatureClassToNumPyArray(featureClass, fields)
-print("numpyArray")
-# df = pd.DataFrame(voids) # an idea maybe use a DataFrame?????!!!!!
+print(len(numpyArray))
+df = pd.DataFrame(numpyArray) # an idea maybe use a DataFrame?????!!!!!
+print(df)
 # feature_list = []
 # for void in voids:
 #    temp = []
@@ -202,3 +162,47 @@ Parameters
 
 # Save Feature Class to GDB
 # arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, '#', fms_out)
+
+
+'''
+Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder in the specified location
+Parameters
+- out_folder_path: The location on the disk where the folder will be created. (Data type: Folder)
+- out_name: The folder to create. (Data type: String)
+Return
+The new output folder (data type: folder)
+'''
+# out_folder_path = r'C:\Users\Judith\Documents\Studium\1_Bachelor_of_Science_Geoinformatik\Test'
+# out_name = "folder_for_GDB"
+# folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
+# print("A folder has been created")
+'''
+Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
+creates a file GDB (Data Management)
+Parameters
+- out_folder_path: The folder where the new file GDB will be created (data type: Folder).
+- out_name: The name of the file GDB to be created (data type: string).
+- out_version: The ArcGIS version of the new GDB, CURRENT creates a GDB that is compatible with the currently 
+               installed version of ArcGIS. This is the default setting.
+Return
+The new output file GDB (data type: workspace)
+'''
+# if not os.path.exists(r'C:\Users\Judith\Documents\Studium\1_Bachelor_of_Science_Geoinformatik\Test\folder_for_GDB\shp2netCDF.gdb'):
+#   file_gdb_workspace = arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
+#   print("A file geodatabase was created")
+# else:
+#   print("file GDB exists already")
+
+'''
+Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
+converts a shapefile into a feature class
+Parameters
+- in_features: The feature class or feature layer to be converted. (Data type: Feature layer)
+- out_path: The location where the output feature class is created. This can be a GDB or a folder
+            If a folder is specified as the location, the output is a shapefile. (Datatype: Workspace;Feature Dataset)
+- out_name: The name of the output feature class. (Data type: String)     
+Return
+The output feature class. (Data type: Feature Class)
+'''
+# arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_fc")
+# print("Shapefile was converted to a feature class. Files were saved.")
