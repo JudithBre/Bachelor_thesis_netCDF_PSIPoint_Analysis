@@ -117,14 +117,14 @@ df = pd.DataFrame(numpyArray)
 print(df)
 print()
 df.info()
-# feature_list = []
-# for step in numpyArray:
-#     temp = []
-#     for x in step:
-#         temp.append(x)
-# feature_list.append(temp)
-# array = np.asarray(feature_list)
-# print(array)
+feature_list = []
+for step in numpyArray:
+    temp = []
+    for x in step:
+        temp.append(x)
+feature_list.append(temp)
+array = np.asarray(feature_list)
+print(array)
 
 '''
 Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  creates a Feature-Layer
