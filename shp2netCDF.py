@@ -94,10 +94,6 @@ for field_idx in range(len(fms_shp.fields)):
         fields.append(field_name)
 # print(fields)
 
-# ----------------------------------------------------------------------------------------------------------------------
-# The Python script runs fine up to this point. No changes necessary.
-# ----------------------------------------------------------------------------------------------------------------------
-
 '''
 Function FeatureClassToNumPyArray(in_table, field_names) converts a feature class into a numpy array
 Parameters
@@ -117,6 +113,11 @@ df = pd.DataFrame(numpyArray)
 print(df)
 print()
 df.info()
+
+# ----------------------------------------------------------------------------------------------------------------------
+# The Python script runs fine up to this point. No changes necessary.
+# ----------------------------------------------------------------------------------------------------------------------
+
 feature_list = []
 for step in numpyArray:
     temp = []
