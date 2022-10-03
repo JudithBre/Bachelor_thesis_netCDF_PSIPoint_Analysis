@@ -22,61 +22,61 @@ import numpy as np
 # ----------------------------------------------------------------------------------------------------------------------
 # Root Directory:
 root_dir = r'C:\Users\Judith\Documents\Studium\1_Bachelor_of_Science_Geoinformatik\Bachelorarbeit\BA'
-print("Root Directory: " + root_dir)
+# print("Root Directory: " + root_dir)
 # Directory where the input shape files are stored:
 shp_dir = os.path.join(root_dir, 'Daten\A015_D139_32400_5712_20141001_20201231_BA-Bresser_v02')
-print("Directory input shape files are stored: " + shp_dir)
-print(os.listdir(shp_dir))
+# print("Directory input shape files are stored: " + shp_dir)
+# print(os.listdir(shp_dir))
 # Directory where the output geodatabase will be created:
 out_gdb = os.path.join(root_dir, "shp2netCDF.gdb")
-print("Directory output geodatabase will be created: " + out_gdb + "\n")
+# print("Directory output geodatabase will be created: " + out_gdb + "\n")
 
 # ----------------------------------------------------------------------------------------------------------------------
 # set arcgis workspace to folder and
 # create empty list for the shapefiles in the input folder
 # ----------------------------------------------------------------------------------------------------------------------
 arcpy.env.workspace = root_dir
-print("set arcgis workspace to folder has been done")
+# print("set arcgis workspace to folder has been done")
 shp_files = []
-print(shp_files)
-print("empty list for the shapefiles were produced")
+# print(shp_files)
+# print("empty list for the shapefiles were produced")
 
 # ----------------------------------------------------------------------------------------------------------------------
 # searching for shapefiles (recursive) in the input folder, append to list
 # ----------------------------------------------------------------------------------------------------------------------
-print("searching for shapefiles (recursive) in the input folder")
+# print("searching for shapefiles (recursive) in the input folder")
 for root, dirs, files in os.walk(shp_dir):
     for file in files:
         if file.endswith(".shp") and "vertical" in file:
             # appends an element to the end of the list
             shp_files.append(os.path.join(root, file))
-            print("An item has been added to the list.")
-            print(shp_files)
-            print()
+            # print("An item has been added to the list.")
+            # print(shp_files)
+            # print()
 
 # ----------------------------------------------------------------------------------------------------------------------
 # You can use the ArcPy class Field Mappings
 # ----------------------------------------------------------------------------------------------------------------------
 # Create a Field Mappings object
 fms_shp = arcpy.FieldMappings()
-print("Create Field Mappings Object")
+# print("Create Field Mappings Object")
 # Adds a table to the Field Mappings object
 fms_shp.addTable(shp_files[0])
-print("A table has been added to the FieldMappings object." + "\n")
-print(fms_shp)
+# print("A table has been added to the FieldMappings object." + "\n")
+# print(fms_shp)
 # Notice: Works as long as only one table adds to the Field Mappings object.
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Loop through all attributes (columns)
 # ----------------------------------------------------------------------------------------------------------------------
-print("Loop through all attributes (columns)")
+# print("Loop through all attributes (columns)")
 # print("Attribute count: ")
 # print(len(fms_shp.fields))
 # print()
 # print("Loop starts now:")
 # zaehler = 0
 fields = ["lat", "lon"]
-print(fields)
+# print(fields)
 for field_idx in range(len(fms_shp.fields)):
     # Get current FieldMap
     field_map = fms_shp.getFieldMap(field_idx)
@@ -92,8 +92,7 @@ for field_idx in range(len(fms_shp.fields)):
     # Search for date columns starting with "D_20*"
     if field_name.startswith('D_20'):
         fields.append(field_name)
-        print(field_name + " (starts with D_20*)")
-print(fields)
+# print(fields)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # The Python script runs fine up to this point. No changes necessary.
@@ -111,19 +110,21 @@ featureClass = os.path.join(shp_dir, "A015_D139_32400_5712_20141001_20201231_BA-
 # Conversion of the list "fields" with the attribute names into the data type String
 stringFields = "".join(fields)
 # As required, the function now receives inputs in the form of a string as parameters
+print("Start with the process FeatureClassToNumpyArray")
 numpyArray = arcpy.da.FeatureClassToNumPyArray(featureClass, fields)
-print(len(numpyArray))
-df = pd.DataFrame(numpyArray) # an idea maybe use a DataFrame?????!!!!!
+print("Process FeatureClassToNumpyArray finished")
+df = pd.DataFrame(numpyArray)
 print(df)
+print()
+df.info()
 # feature_list = []
-# for void in voids:
-#    temp = []
-#    for x in void:
-#        temp.append(x)
+# for step in numpyArray:
+#     temp = []
+#     for x in step:
+#         temp.append(x)
 # feature_list.append(temp)
 # array = np.asarray(feature_list)
-# Data are all read in and in a format where we can use this as we wish....
-'''TODO: array into Space-Time-Cube'''
+# print(array)
 
 '''
 Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  creates a Feature-Layer
