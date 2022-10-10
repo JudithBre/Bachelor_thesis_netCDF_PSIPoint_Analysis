@@ -123,10 +123,23 @@ for step in numpyArray:
     temp = []
     for x in step:
         temp.append(x)
-feature_list.append(temp)
+    feature_list.append(temp)
+    # print(step)
 array = np.asarray(feature_list)
 print(array)
 
+'''
+Function NumPyArrayToFeatureClass (in_array, out_table, shape_fields, {spatial_reference}) 
+converts a structured NumPy array into a point feature class.
+Parameters
+- in_array: A structured NumPy array (data type: NumPyArray).
+- out_table: The output point feature class to which the records from the NumPy array will be written 
+             (data type: String).
+- shape_fields: A list (or tuple) of field names used to create the feature class' geometry. 
+                Coordinates are specified in the order of x, y, z, and m. z-coordinate and m-value fields are optional.
+'''
+#numpyArray_to_fc = arcpy.da.NumPyArrayToFeatureClass(array, "numpyArray_to_fc", ("x", "y", "z", "lat", "lon"))
+#print(numpyArray_to_fc)
 '''
 Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  creates a Feature-Layer
 Parameters
@@ -137,7 +150,7 @@ Parameters
              The newly created layer can be used as an input to any geoprocessing tool for which feature layers 
              can be entered. (Data type: Feature Layer)
 '''
-# arcpy.management.MakeFeatureLayer(shp_dir, featureLayer)
+# featureLayer =  arcpy.management.MakeFeatureLayer(numpyArray_to_fc, featureLayer)
 
 '''
 Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field) creates a space-time cube
@@ -146,7 +159,7 @@ Parameters
 - output_cube: The output netCDF data cube to be created,
                which contains the number and summaries of point data from input features. (Data type: File)
 - time_field:  The field containing date and time information (timestamp) for each point.
-              This field must be of type "Date". (Data type: Field)
+               This field must be of type "Date". (Data type: Field)
 '''
 # cube = arcpy.stpm.CreateSpaceTimeCube(featureLayer, PSI.nc, time_field)
 
