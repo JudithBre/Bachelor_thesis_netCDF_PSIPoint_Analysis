@@ -11,11 +11,6 @@ import os
 import arcpy
 import pandas as pd
 import numpy as np
-# from datetime import datetime
-# import re
-
-# https://www.adamerispaha.com/2017/01/24/reading-shapefiles-into-pandas-dataframes/
-# https://pypi.org/project/pyshp/
 
 # ----------------------------------------------------------------------------------------------------------------------
 # directories
@@ -95,11 +90,13 @@ for field_idx in range(len(fms_shp.fields)):
 # print(fields)
 
 '''
-Function FeatureClassToNumPyArray(in_table, field_names) converts a feature class into a numpy array
+Function FeatureClassToNumPyArray(in_table, field_names) converts a feature class 
+into a numpy array
 Parameters
 - in_table: The feature class, layer, table or table view (data type: string)
-- field_names: A list (or tuple) of field names. Specify an asterisk (*) instead of a list of fields, 
-               to access all fields of the input table (data type: string)
+- field_names: A list (or tuple) of field names (data type: string)
+Source
+https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/featureclasstonumpyarray.htm
 '''
 # save the file path to the shapefile feature class, data type: String
 featureClass = os.path.join(shp_dir, "A015_D139_32400_5712_20141001_20201231_BA-Bresser_v02_decomposed_vertical.shp")
@@ -113,10 +110,6 @@ df = pd.DataFrame(numpyArray)
 print(df)
 print()
 df.info()
-
-# ----------------------------------------------------------------------------------------------------------------------
-# The Python script runs fine up to this point. No changes necessary.
-# ----------------------------------------------------------------------------------------------------------------------
 
 feature_list = []
 for step in numpyArray:
@@ -135,89 +128,45 @@ Parameters
 - in_array: A structured NumPy array (data type: NumPyArray).
 - out_table: The output point feature class to which the records from the NumPy array will be written 
              (data type: String).
-- shape_fields: A list (or tuple) of field names used to create the feature class' geometry. 
-                Coordinates are specified in the order of x, y, z, and m. z-coordinate and m-value fields are optional.
+- shape_fields: A list (or tuple) of field names used to create the 
+                feature class' geometry. 
+                Coordinates are specified in the order of x, y, z, and m. z-coordinate 
+                and m-value fields are optional.
+Source
+https://pro.arcgis.com/de/pro-app/latest/arcpy/data-access/numpyarraytofeatureclass.htm
 '''
 #numpyArray_to_fc = arcpy.da.NumPyArrayToFeatureClass(array, "numpyArray_to_fc", ("x", "y", "z", "lat", "lon"))
 #print(numpyArray_to_fc)
+
 '''
-Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  creates a Feature-Layer
+Function arcpy.management.MakeFeatureLayer(in_features, out_layer)  
+creates a Feature-Layer
 Parameters
 - in_features: The input feature class or layer from which the new layer is created. 
-               Complex feature classes such as annotation and dimension feature classes are not allowed as inputs.
-               (Data type: Feature Layer)
+               Complex feature classes such as annotation and dimension feature classes 
+               are not allowed as inputs. (Data type: Feature Layer)
 - out_layer: The name of the feature layer to be created. 
-             The newly created layer can be used as an input to any geoprocessing tool for which feature layers 
-             can be entered. (Data type: Feature Layer)
+             The newly created layer can be used as an input to any geoprocessing tool for 
+             which feature layers can be entered. (Data type: Feature Layer)
+Source
+https://pro.arcgis.com/de/pro-app/latest/tool-reference/data-management/
+make-feature-layer.htm
 '''
 # featureLayer =  arcpy.management.MakeFeatureLayer(numpyArray_to_fc, featureLayer)
 
 '''
-Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field) creates a space-time cube
+Function arcpy.stpm.CreateSpaceTimeCube(in_features, output_cube, time_field) 
+creates a space-time cube
 Parameters
-- in_features: The input point feature class to aggregate to space-time sections. (Data type: Feature layer)
+- in_features: The input point feature class to aggregate to space-time sections. 
+               (Data type: Feature layer)
 - output_cube: The output netCDF data cube to be created,
-               which contains the number and summaries of point data from input features. (Data type: File)
+               which contains the number and summaries of point data from input features. 
+               (Data type: File)
 - time_field:  The field containing date and time information (timestamp) for each point.
                This field must be of type "Date". (Data type: Field)
+Source
+https://desktop.arcgis.com/de/arcmap/10.3/tools/space-time-pattern-mining-toolbox/
+create-space-time-cube.htm
 '''
 # cube = arcpy.stpm.CreateSpaceTimeCube(featureLayer, PSI.nc, time_field)
-
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Idea collection, programming ideas
-# ----------------------------------------------------------------------------------------------------------------------
-# Check and Create GDB
-# if not arcpy.Exists(os.path.join(root_dir, out_gdb)):
-#   arcpy.management.CreateFileGDB(root_dir, 'shp2netCDF.gdb', 'CURRENT')
-
-# Check and Remove Feature Class
-# if arcpy.Exists(os.path.join(out_path, out_name)):
-#   arcpy.Delete_management(out_name)
-
-# Save Feature Class to GDB
-# arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name, '#', fms_out)
-
-
-'''
-Function arcpy.management.CreateFolder(out_folder_path, out_name) creates a folder in the specified location
-Parameters
-- out_folder_path: The location on the disk where the folder will be created. (Data type: Folder)
-- out_name: The folder to create. (Data type: String)
-Return
-The new output folder (data type: folder)
-'''
-# out_folder_path = r'C:\Users\Judith\Documents\Studium\1_Bachelor_of_Science_Geoinformatik\Test'
-# out_name = "folder_for_GDB"
-# folder_for_GDB = arcpy.management.CreateFolder(out_folder_path, out_name)
-# print("A folder has been created")
-'''
-Function arcpy.management.CreateFileGDB(out_folder_path, out_name, {out_version}) 
-creates a file GDB (Data Management)
-Parameters
-- out_folder_path: The folder where the new file GDB will be created (data type: Folder).
-- out_name: The name of the file GDB to be created (data type: string).
-- out_version: The ArcGIS version of the new GDB, CURRENT creates a GDB that is compatible with the currently 
-               installed version of ArcGIS. This is the default setting.
-Return
-The new output file GDB (data type: workspace)
-'''
-# if not os.path.exists(r'C:\Users\Judith\Documents\Studium\1_Bachelor_of_Science_Geoinformatik\Test\folder_for_GDB\shp2netCDF.gdb'):
-#   file_gdb_workspace = arcpy.management.CreateFileGDB(folder_for_GDB, "shp2netCDF.gdb", "CURRENT")
-#   print("A file geodatabase was created")
-# else:
-#   print("file GDB exists already")
-
-'''
-Function arcpy.conversion.FeatureClassToFeatureClass(in_features, out_path, out_name)
-converts a shapefile into a feature class
-Parameters
-- in_features: The feature class or feature layer to be converted. (Data type: Feature layer)
-- out_path: The location where the output feature class is created. This can be a GDB or a folder
-            If a folder is specified as the location, the output is a shapefile. (Datatype: Workspace;Feature Dataset)
-- out_name: The name of the output feature class. (Data type: String)     
-Return
-The output feature class. (Data type: Feature Class)
-'''
-# arcpy.conversion.FeatureClassToFeatureClass(shp_files[0], folder_for_GDB, "out_shpAs_fc")
-# print("Shapefile was converted to a feature class. Files were saved.")
