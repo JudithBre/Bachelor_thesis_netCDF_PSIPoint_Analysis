@@ -47,7 +47,6 @@ for root, dirs, files in os.walk(shp_dir):
             shp_files.append(os.path.join(root, file))
             # print("An item has been added to the list.")
             # print(shp_files)
-            # print()
 
 # ----------------------------------------------------------------------------------------------------------------------
 # You can use the ArcPy class Field Mappings
